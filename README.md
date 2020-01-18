@@ -2,7 +2,10 @@
 
 KVS is a commandline tool to store and organize key-value data on your local file system.
 
-- built on top of the amazing [bbolt](https://github.com/etcd-io/bbolt) db
+- Built on top of the amazing [bbolt](https://github.com/etcd-io/bbolt) db
+- Free open source software
+- Works on [Linux](https://github.com/lucasepe/kvs/releases/latest), [Mac OSX](https://github.com/lucasepe/kvs/releases/latest), [Windows](https://github.com/lucasepe/kvs/releases/latest)
+- Just a single portable binary file
 
 ## Store
 
@@ -135,6 +138,8 @@ Example: retrieve the encrypted password and pipe to clipboard
 $ kvs -b aruba pull pass -d | xclip -selection c
 Secret phrase: 
 ```
+
+the decrypted password will be saved to your clipboard - ready to be pasted!
 
 ### How to delete an item
 
