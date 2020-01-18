@@ -106,41 +106,34 @@ Use "kvs [command] --help" for more information about a command.
 
 ### How to store an item
 
-Add a property `user=luca.sepe@gmail.com` in a bucket called `google` and a store called `accounts`:
+Example: add a property `user=luca.sepe@gmail.com` in a bucket called `google` and a store called `accounts`
 
 ```bash
 $ kvs push --store accounts --bucket google user luca.sepe@gmail.com
 item successfully stored in bucket 'google' with key 'user'
 ```
 
-add another property `pass=abbracadabbra`:
-
-```bash
-$ kvs push --store accounts --bucket google pass abbracadabra
-item successfully stored in bucket 'google' with key 'pass'
-```
-
-You can use shell pipes:
+Example: add a property using shell pipes
 
 ```bash
 $ pwgen | kvs push --store accounts --bucket google pass
 item successfully stored in bucket 'google' with key 'pass'
 ```
 
-another example using shell pipes:
-
-```bash
-$ echo 'world' | kvs push --store accounts --bucket google hello
-item successfully stored in bucket 'google' with key 'hello'
-```
-
 ### How to retrieve an item
 
-Get the value of the `user` property in the bucket `google`:
+Example: retrieve the value of the `user` property in the bucket `google`
 
 ```bash
 $ kvs pull --store accounts --bucket google user
 luca.sepe@gmail.com
+```
+
+Example: retrieve the encrypted password and pipe to clipboard
+
+```bash
+$ kvs -b aruba pull pass -d | xclip -selection c
+Secret phrase: 
 ```
 
 ### How to delete an item

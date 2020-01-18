@@ -24,6 +24,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/avelino/slugify"
 	"github.com/lucasepe/kvs"
 	"github.com/lucasepe/kvs/pkg/cl"
 	"github.com/spf13/cobra"
@@ -42,7 +43,7 @@ var listCmd = &cobra.Command{
 
 		bucket, _ := cmd.Flags().GetString(optBucket)
 		if len(bucket) > 0 {
-			values = store.Keys(bucket)
+			values = store.Keys(slugify.Slugify(bucket))
 		} else {
 			values = store.Buckets()
 		}
