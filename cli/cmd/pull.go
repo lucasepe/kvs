@@ -83,18 +83,16 @@ func init() {
 }
 
 func decrypt(text, secret []byte) ([]byte, error) {
-	phrase := aes.PKCS7Padding(secret, 16)
-
-	key, err := pbdk.DeriveKey(phrase)
+	key, err := pbdk.DeriveKey(secret)
 	if err != nil {
 		return nil, err
 	}
 
 	var l int
-	data := make([]byte, base64.StdEncoding.DecodedLen(len(text)))
-	if l, err = base64.StdEncoding.Decode(data, text); err != nil {
+	data := make([]byte, base64.RawStdEncoding.DecodedLen(len(text)))
+	if l, err = base64.RawStdEncoding.Decode(data, text); err != nil {
 		return nil, err
 	}
 
-	return aes.AesCbcPkcs7Decrypt(data[:l], key, nil)
+	return aes.GcmDecrypt(data[:l], key)
 }

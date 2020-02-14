@@ -8,5 +8,5 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.5
 	go.etcd.io/bbolt v1.3.3
-	golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9
+	golang.org/x/crypto v0.0.0-20200214034016-1d94cc7ab1c6
 )

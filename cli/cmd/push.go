@@ -127,20 +127,18 @@ func init() {
 }
 
 func encrypt(data, secret []byte) ([]byte, error) {
-	phrase := aes.PKCS7Padding(secret, 16)
-
-	key, err := pbdk.DeriveKey(phrase)
+	key, err := pbdk.DeriveKey(secret)
 	if err != nil {
 		return nil, err
 	}
 
-	enc, err := aes.AesCbcPkcs7Encrypt(data, key, nil)
+	enc, err := aes.GcmEncrypt(data, key)
 	if err != nil {
 		return nil, err
 	}
 
-	res := make([]byte, base64.StdEncoding.EncodedLen(len(enc)))
-	base64.StdEncoding.Encode(res, enc)
+	res := make([]byte, base64.RawStdEncoding.EncodedLen(len(enc)))
+	base64.RawStdEncoding.Encode(res, enc)
 
 	return res, nil
 }

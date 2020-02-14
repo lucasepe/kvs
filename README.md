@@ -44,7 +44,7 @@ Also bucket names are transformed into _slugs_.
 
 ### Encryption
 
-KVS can encrypt values using the AES algorithm in CBC mode with PKCS7 padding.
+KVS can encrypt values using the [AES](https://it.wikipedia.org/wiki/Advanced_Encryption_Standard) algorithm in [Galois Counter Mode (GCM)](https://en.wikipedia.org/wiki/Galois/Counter_Mode).
 
  - the result will be saved as base64 encoded string
 
@@ -109,7 +109,7 @@ Use "kvs [command] --help" for more information about a command.
 
 ### How to store an item
 
-Example: add a property `user=luca.sepe@gmail.com` in a bucket called `google` and a store called `accounts`
+Example: add a property `user=john.doe@gmail.com` in a bucket called `google` and a store called `accounts`
 
 ```bash
 $ kvs push --store accounts --bucket google user luca.sepe@gmail.com
@@ -129,7 +129,7 @@ Example: retrieve the value of the `user` property in the bucket `google`
 
 ```bash
 $ kvs pull --store accounts --bucket google user
-luca.sepe@gmail.com
+john.doe@gmail.com
 ```
 
 Example: retrieve the encrypted password and pipe to clipboard
