@@ -35,7 +35,7 @@ import (
 
 const (
 	appName    = "kvs"
-	appVersion = "1.00"
+	appVersion = "1.11"
 	appSummary = "Key Val Store"
 	banner     = ` _
 | | __  __   __    ___ 
@@ -45,6 +45,8 @@ const (
 
 	optBucket = "bucket"
 	optStore  = "store"
+
+	envSecretKey = "KVS_SECRET"
 )
 
 // rootCmd represents the base command when called without any subcommands

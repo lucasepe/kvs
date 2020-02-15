@@ -60,7 +60,7 @@ var pullCmd = &cobra.Command{
 		cl.HandleErr(err)
 
 		if ok, _ := cmd.Flags().GetBool(optDecrypt); ok {
-			secret, err := cl.GetSecret("Secret phrase: ")
+			secret, err := cl.GetSecret("Secret phrase: ", envSecretKey)
 			cl.HandleErr(err)
 
 			res, err := decrypt(data, secret)
@@ -79,7 +79,7 @@ func init() {
 	pullCmd.Flags().StringP(optBucket, "b", "", "bucket name")
 	pullCmd.MarkFlagRequired(optBucket)
 
-	pullCmd.Flags().BoolP(optDecrypt, "d", false, "prompt for 'secret phrase' in order to decrypt the value")
+	pullCmd.Flags().BoolP(optDecrypt, "d", false, "decrypt the value")
 }
 
 func decrypt(text, secret []byte) ([]byte, error) {

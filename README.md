@@ -71,6 +71,7 @@ $ kvs pull track-id -s accounts -b google -d
 Secret phrase: 
 UA-XXXXXXX-X
 ```
+:point_right: You can set the environment variable `KVS_SECRET` to avoid typing the _secret phrase_ every time.
 
 ### Binary values
 

@@ -89,9 +89,9 @@ var pushCmd = &cobra.Command{
 		}
 
 		if ok, _ := cmd.Flags().GetBool(optEncrypt); ok {
-			secret, err := cl.GetSecret("Secret phrase: ")
+			secret, err := cl.GetSecret("Secret phrase: ", envSecretKey)
 			cl.HandleErr(err)
-			secret2, err := cl.GetSecret("Secret phrase again: ")
+			secret2, err := cl.GetSecret("Secret phrase again: ", envSecretKey)
 			cl.HandleErr(err)
 			if ok := bytes.Equal(secret, secret2); !ok {
 				fmt.Fprintf(os.Stderr, "secret phrases do not match\n")
@@ -120,7 +120,7 @@ var pushCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(pushCmd)
 
-	pushCmd.Flags().BoolP(optEncrypt, "e", false, "encrypt data using AES algorithm in CBC mode with PKCS7 padding")
+	pushCmd.Flags().BoolP(optEncrypt, "e", false, "encrypt the value")
 
 	pushCmd.Flags().StringP(optBucket, "b", "", "bucket name")
 	pushCmd.MarkFlagRequired(optBucket)

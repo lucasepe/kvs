@@ -1,6 +1,6 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
-# Run locally with: goreleaser --snapshot --skip-publish --rm-dist
+# Run locally with: goreleaser --rm-dist --snapshot --skip-publish
 project_name: kvs
 before:
   hooks:

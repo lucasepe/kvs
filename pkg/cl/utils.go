@@ -11,7 +11,12 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 )
 
-func GetSecret(prompt string) ([]byte, error) {
+// GetSecret read a password from the terminal
+func GetSecret(prompt, envKey string) ([]byte, error) {
+	if val, ok := os.LookupEnv(envKey); ok && val != "" {
+		return []byte(val), nil
+	}
+
 	fmt.Fprint(os.Stderr, prompt)
 	var fd int
 	if terminal.IsTerminal(int(syscall.Stdin)) {
