@@ -1,0 +1,51 @@
+# Run locally with: goreleaser --rm-dist --snapshot --skip-publish
+project_name: kvs
+before:
+  hooks:
+    - go mod tidy
+    - go mod download
+builds:
+- env:
+    - CGO_ENABLED=0
+  ldflags:
+    - -s -w -X "main.Version={{.Version}}" -X "main.Build={{.ShortCommit}}"
+    - -a -extldflags "-static"
+  goos:
+    - windows
+    - linux
+    - darwin
+  goarch:
+    #- arm
+    - arm64
+    - amd64
+  goarm:
+    - 7
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+nfpms:
+  -
+    package_name: kvs
+    vendor: Luca Sepe
+    homepage: https://github.com/lucasepe/kvs
+    description: Store and organize key/value data on your local file system.
+    license: MIT
+    maintainer: Luca Sepe
+    formats:
+      - deb
+      - rpm
+
+brews:
+  - homepage: 'https://github.com/lucasepe/kvs'
+    description: 'Store and organize key/value data on your local file system.'
+    folder: Formula
+    commit_author:
+      name: lucasepe
+      email: luca.sepe@gmail.it
+    tap:
+      owner: lucasepe
+      name: homebrew-kvs
+    install: |
+      bin.install "kvs"

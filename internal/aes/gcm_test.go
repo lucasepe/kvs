@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/lucasepe/kvs/pkg/pbdk"
+	"github.com/lucasepe/kvs/internal/pbdk"
 )
 
 func TestEncrypt(t *testing.T) {
@@ -46,7 +46,7 @@ func TestEncrypt(t *testing.T) {
 			t.Error(err)
 		}
 
-		dec, err := GcmDecrypt(enc, key)
+		dec, _ := GcmDecrypt(enc, key)
 		if !reflect.DeepEqual(tc.input, string(dec)) {
 			t.Fatalf("expected: %v, got: %v", tc.input, string(dec))
 		}

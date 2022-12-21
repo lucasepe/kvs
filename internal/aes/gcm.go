@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
-	"errors"
+	"fmt"
 	"io"
 )
 
@@ -45,7 +45,7 @@ func GcmDecrypt(ciphertext, key []byte) ([]byte, error) {
 	}
 
 	if len(ciphertext) < gcm.NonceSize() {
-		return nil, errors.New("Invalid data")
+		return nil, fmt.Errorf("invalid data")
 	}
 
 	// extract random nonce we added to the beginning of the file

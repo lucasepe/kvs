@@ -1,12 +1,15 @@
 module github.com/lucasepe/kvs
 
-go 1.13
+go 1.19
 
 require (
-	github.com/avelino/slugify v0.0.0-20180501145920-855f152bd774
-	github.com/mitchellh/go-homedir v1.1.0
-	github.com/pkg/errors v0.9.1
-	github.com/spf13/cobra v0.0.5
-	go.etcd.io/bbolt v1.3.3
+	github.com/lucasepe/toolbox v0.1.6
+	go.etcd.io/bbolt v1.3.6
 	golang.org/x/crypto v0.0.0-20200214034016-1d94cc7ab1c6
+)
+
+require (
+	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/term v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
 )
